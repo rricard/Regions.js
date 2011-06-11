@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <title>Regions.js Test Suite</title>
+  
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://raw.github.com/Modernizr/Modernizr/master/modernizr.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="http://code.jquery.com/qunit/git/qunit.js"></script>
+  <script src="https://raw.github.com/davatron5000/Lettering.js/master/jquery.lettering.js"></script>
+  
+  <script src="../feature-detects/cssregions.js"></script>
+  <script src="../regions.js"></script>
+  
+  <script src="js/setup.js"></script>
+  <script src="js/detection.js"></script>
+  <script src="js/layout.js"></script>
+</head>
+<body>
+  <h1 id="qunit-header">Regions.js Test Suite</h1>
+  <h2 id="qunit-banner"></h2>
+  <div id="qunit-testrunner-toolbar"></div>
+  <h2 id="qunit-userAgent"></h2>
+
+  <ol id="qunit-tests"></ol>
+  <div id="mod-output"></div>
+  
+  <div id="playground">
+    <style type="text/css">
+    #article {
+      -webkit-flow: "article-flow";
+      flow: "article-flow";
+    }
+    .article-region {
+      content: from(article-flow);
+      background: #C5DFF0;
+    }
+    #article-region-1 {
+      display: inline-block;
+      width: 19%;
+      height: 100px;
+    }
+    #article-region-2 {
+      display: inline-block;
+      width: 80%;
+      height: 100px;
+    }
+    </style>
+    <h1>A press article</h1>
+    <div id="article">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <div class="article-region" id="article-region-1"></div>
+    <div class="article-region" id="article-region-2"></div>
+  </div>
+</body>
