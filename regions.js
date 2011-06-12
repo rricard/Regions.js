@@ -4,58 +4,99 @@ window.CSSRegions = (function( window, document, undefined ) {
   
   CSSRegions = {},
   
-  cut = function(flowChunk, region) {
-    region = $(region);
-    flowChunk = $(flowChunk);
-    // Little bit tricky : the region must be the offsetParent
-    region.css("position", "relative");
-    region.html(flowChunk);
-    domChunk = region.children();
-    // It launches the recursive machine !
-    var ret = domCutter(domChunk, region);
-    region.html("");
-    return ret;
+  /**
+   * Just put enough elements (that fits) into the region
+   * Returns the overflow in a container
+   */
+  
+  integrate = function (elementsContainer, region) {
+    // This avoids the original copy's alteration 
+    elementsContainer = elementsContainer.clone();
+    // This redefines the offsetParent for children
+    if (region.css("position"))
+      region.css("position", "relative");
+    // This introduces the elements
+    region.empty();
+    region.append(elementsContainer.children());
+    // This removes the overflow and return it
+    return overflowRemover(region);
   },
   
-  domCutter = function(domChunk, region) {
-    var ret = { keep: [], reject: []};
-    domChunk = $(domChunk);
-    // Inspect each dom element to see if it's in the box
-    domChunk.each(function(index, child) {
-      child = $(child);
-      if(
-        child.position().left + child.outerWidth(true) < region.width() ||
-        child.position().top + child.outerHeight(true) < region.height()
-      ) {
-        ret.keep.push(child); // TODO : Some optimization here, the loop can be stopped when the first node is rejected.
-      } else {
-        ret.reject.push(child);
+  /**
+   * Removes and return the overflow in a region
+   * for each node you want to analyze.
+   */
+    
+  overflowRemover = function (elementsContainer, region, letteringForbidden) {
+    if (region == undefined) region = elementsContainer;
+    
+    // This create an empty and hidden DOM node
+    var overflowContainer = $("<div></div>"),
+        elements = elementsContainer.children(),
+    // This stores the first element that had to be rejected
+        firstRejected = false;
+    
+    elements.each(function (index, element) {
+      element = $(element); // jQuery manipulable
+      if (
+        element.position().left + element.outerWidth(true) > region.width() ||
+        element.position().top + element.outerHeight(true) > region.height()
+      ) { // If it does not fit in the region :
+        element.detach();
+        if (firstRejected) { // And if a rejected element have been keeped.
+          // It's added directly into the overflow node
+          overflowContainer.append($("<span> </span>")); // Fix whitespace issues
+          overflowContainer.append(element);
+        } else {
+          // Or we keep it for later
+          firstRejected = element;
+        }
       }
     });
-    // Inspect the first rejected element to keep some child nodes
-    if (ret.reject[0]) {
-      var firstRejected = $(ret.reject[0]);
-      if (firstRejected.nodeType == 3) { // If TextNode
-        firstRejected.lettering('words'); // We use lettering to split words
+    
+    if (firstRejected) { // The first rejected is taken
+      // If it's a text, treat it with Lettering.js
+      if (firstRejected.children().length == 0 && !letteringForbidden) {
+        firstRejected.lettering("words");
+        letteringForbidden = true;
       }
-      var fRChildren = firstRejected.children(),
-          fRStructure = firstRejected.clone();
-      fRStructure.html("");
-      // We are introducing some reccurence here !
-      var fRCut = domCutter(fRChildren, region),
-          fRKeep = fRStructure.clone(),
-          fRReject = fRStructure.clone();
-      // We are reusing the structure to split dom correctly
-      fRKeep.html(fRCut.keep);
-      ret.keep.push(fRKeep);
-      fRReject.html(fRCut.reject);
-      ret.reject.unshift(fRReject);
+      // If he is not empty
+      if (firstRejected.children().length > 0) {
+        // He is reintroduced into the DOM
+        elementsContainer.append(firstRejected);
+        // The same treatment will be performed on him (recursion)
+        var removed = overflowRemover(firstRejected, region, letteringForbidden),
+        // His overflow will be moved into his parent's overflow
+            reintroduce = firstRejected.clone();
+        reintroduce.empty();
+        reintroduce.append(removed.children());
+        overflowContainer.prepend(reintroduce);
+      } else {
+        overflowContainer.prepend(firstRejected);
+      }
     }
-    return ret;
+    return overflowContainer;
   };
   
+  /**
+   * Introduce a flow into several regions (once)
+   * Returns the overflow in a DOM element
+   */
+  
+  CSSRegions.build = function (flowContainer, regionsArray) {
+    flowContainer.css("display", "none");
+    var overflow = integrate(flowContainer, regionsArray[0]);
+    regionsArray.shift();
+    if (regionsArray.length > 0) {
+      return CSSRegions.build(overflow, regionsArray);
+    } else {
+      return overflow;
+    }
+  }
+  
   $(function(){
-    CSSRegions.rebuild();
+    
+    CSSRegions.build($("#article"), [$("#article-region-1"), $("#article-region-2"), $("#article-region-3")]);
   });
   
   return CSSRegions;
