@@ -6,16 +6,19 @@
   
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="https://raw.github.com/Modernizr/Modernizr/master/modernizr.js"></script>
+  <script src="https://raw.github.com/SlexAxton/yepnope.js/master/yepnope.1.0.1-min.js"></script>
   <link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen" />
   <script type="text/javascript" src="http://code.jquery.com/qunit/git/qunit.js"></script>
   <script src="https://raw.github.com/davatron5000/Lettering.js/master/jquery.lettering.js"></script>
   
   <script src="../feature-detects/cssregions.js"></script>
-  <script src="../regions.js"></script>
-  
-  <script src="js/setup.js"></script>
-  <script src="js/detection.js"></script>
-  <script src="js/layout.js"></script>
+  <script>
+    yepnope({
+      test: Modernizr.cssregions,
+      load: ["js/setup.js", "js/detection.js"],
+      nope: ["../regions.js", "js/layout.js"]
+    });
+  </script>
 </head>
 <body>
   <h1 id="qunit-header">Regions.js Test Suite</h1>
