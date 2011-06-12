@@ -6,10 +6,18 @@ $(function(){
   });
 
   test("regions have content", function() {
-    notEqual($('.article-region').html(), "");
+    notEqual($('.article-region').text(), "");
   });
   
   test("regions have different content", function() {
-    notEqual($('#article-region-1').html(), $('#article-region-2').html());
+    notEqual($('#article-region-1').text(), $('#article-region-2').text());
+  });
+  
+  test("text in the first region is matching", function() {
+    var expected = /1Lorem ipsum dolor sit amet, consectetur adipisicing elit,\s*/;
+    ok(
+      expected.test($('#article-region-1').text()),
+      "is 1Lorem ipsum dolor sit amet, consectetur adipisicing elit,"
+    );
   });
 });
