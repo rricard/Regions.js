@@ -1,2 +1,77 @@
-Wow ! You're already here ? That's not ready to be seen right now !
-Just go <a href="https://github.com/ricardrobin/Regions.js">here</a> for the moment...
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Regions.js - A polyfill for the CSS3-Regions</title>
+  <meta name="description" content="Enhance your web designs with the CSS3-Regions specification and with this Polyfill for every browser.">
+  <meta name="author" content="Robin Ricard">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="container">
+    <header>
+      <h1 id="logo">Regions.js</h1>
+      <h2>A polyfill for the CSS3-Regions</h2>
+      <a href="http://github.com/ricardrobin/Regions.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://d3nwyuy0nl342s.cloudfront.net/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
+    </header>
+    
+    <div id="main" role="main">
+      <h3>It's all about layout baby !</h3>
+      <p>So you want to create some complex, magazine like, layouts !</p>
+      <p>You know what ? That's possible ! Yeah ! Really ! The only thing you must do is the following: Just put some cool CSS as described in the <a href="http://dev.w3.org/csswg/css3-regions/">W3C's specification</a> and you're good to go ! Yeah that's really easy and you can get some really impressive results !</p>
+      <p>But ... !</p>
+      <p>But what ? Oh yeah, I forgot that the only existing implementation is in a prototypal webkit browser made by Adobe, you can't ask to your customers to use this, of course. So what can you do ?</p>
+      <p>Regions.js appears to be the only solution against this problem for the moment. Ok, it's in beta. Ok, you may need to write 2 lines of javascript (We're trying to fix this last problem). But seriously ! Do you want to create really amazing layouts or not ? (Like the one on this page for example !)</p>
+      
+      <h3>Amazing ! How can I use it ?</h3>
+      <p>As the API might change in a close future, you should check it on the <a href="https://github.com/ricardrobin/Regions.js">github repository</a>.</p>
+      <p>You might need to use <a href="http://www.jquery.com/">jQuery</a> and <a href="http://letteringjs.com/">Lettering.js</a> (that are excellent tools by the way !) in order to use it. You'll also get better results with <a href="http://www.modernizr.com/">Modernizr</a>.</p>
+      <p>Have fun ! (Don't forget, it still contains a lot of bugs !)</p>
+    </div>
+    
+    <div id="layout">
+      <div id="main-1"></div>
+      <img id="lay-img" alt="A landscape" src="landscape.png"/>
+      <div id="main-2"></div>
+      <div id="main-3"></div>
+    </div>
+    
+    <footer>
+      <p>&copy; 2011 - Robin Ricard</p>
+      <p>Project under MIT License, get the source at <a href="https://github.com/ricardrobin/Regions.js">github</a>.</p>
+    </footer>
+  </div>
+  
+  <script src="libs.js"></script>
+  <script src="https://raw.github.com/ricardrobin/Regions.js/master/regions.min.js"></script>
+  <script>
+    $(function () {
+      CSSRegions.autobuild(
+        $("#main"),
+        [
+          $("#main-2"),
+          $("#main-3"),
+          $("#main-1")
+        ]
+      );
+    });
+    
+    
+    var _gaq=[['_setAccount','UA-23945517-1'],['_trackPageview'],['_trackPageLoadTime']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+
+</body>
+</html>

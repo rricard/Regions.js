@@ -1,0 +1,33 @@
+body {
+  font-family: Georgia, Times, serif;
+  background-image: url(background.png);
+  color: #222222;
+  text-shadow: white 0px 1px 0px;
+}
+#logo {
+  font-size: 72px;
+}
+header, footer {
+  text-align: center;
+}
+#layout {
+  margin: auto;
+  width: 80%;
+}
+#main-2, #main-3 {
+  width: 60%;
+  height: 80px;
+}
+#main-2 {
+  font-size: 20px;
+}
+#main-1 {
+  width: 35%;
+  float: right;
+}
+#lay-img {
+  width: 60%;
+}
+footer {
+  margin-top: 100px;
+}
