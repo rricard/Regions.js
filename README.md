@@ -3,19 +3,21 @@ Regions.js
 
 The first implementation for the CSS3-Regions in the real world.
 
-That means : not in an experimental browser made fast by Adobe.
+That means : not just in an experimental prototypal and unstable browser.
 
 What's the big deal ?
 ---------------------
 
 If you find [this](http://labs.adobe.com/technologies/cssregions/) interesting, just try this script !
 
-It requires jQuery and Lettering.js in order to work, but after that, you just have to use CSS normally.
+It requires [jQuery](http://jquery.com/) and [Lettering.js](https://github.com/davatron5000/Lettering.js) in order to work, but after that, that's easy !
 
-**Hum ! Sorry, for the moment we're unable to get it working automatically (yes, I lied before !). And in the case it's working, it may be really processor intensive ! So be careful with it !**
+But first : we aren't able to handle CSS3-Regions properties in your CSS (hey that's planned !). You will have to write a little bit of javascript (oh, you'll see that's really easy !).
 
-How it (should) work (in the future) !
---------------------------------------
+How it works !
+--------------
+
+**This API is likely to change soon, because it's beta stuff !**
 
 Add that in your page : 
 
@@ -23,8 +25,39 @@ Add that in your page :
     <script src="lettering.jquery.js"></script>
     <script src="regions.js"></script>
 
-Follow the specs and you are good to run !
+After that, just add :
 
-Oh ! And you should use Modernizr, a test for it is present somewhere in the repository !
+    <script>
+    $(function(){ // When DOM is Loaded
+        CSSRegions.autobuild( // use autobuild for fluid layouts
+            $("#article-flow"),
+            [
+                $("#article-region-1"),
+                $("#article-region-2"),
+                $("#article-region-3")
+            ]
+        );
+        CSSRegions.build( // use build for fixed layouts (calculated once)
+            $("#fixed-flow"),
+            [
+                $("#fixed-region-1"),
+                $("#fixed-region-2"),
+                $("#fixed-region-3")
+            ]
+        );
+    });
+    </script>
 
-Ok, this is really bad documentation, but for the moment, just the core component are working (and not so well !). My advice is : patience !
+So, somewhere in your HTML, you can put things like that :
+
+    <div id="article-flow">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae neque id tellus congue sollicitudin sit amet eget nisi. Morbi gravida vehicula varius. Morbi sapien quam, sollicitudin nec vehicula ut, luctus a magna. Sed id ultricies libero. Etiam sagittis, ligula in luctus aliquet, libero urna sodales purus, at suscipit orci est at libero. Nulla cursus pharetra ligula et ultrices.</p>
+        <p>Donec eu odio sed urna consectetur lacinia. Maecenas quam dolor, vestibulum nec condimentum vel, egestas eu lectus. Quisque sit amet quam non eros pulvinar tempus eget in erat. Suspendisse sed sodales justo. Nunc hendrerit cursus tortor, eget accumsan urna sollicitudin sed.</p>
+    </div>
+    <div id="article-region-1" style="width: 200px; height: 200px;"></div>
+    <div id="article-region-2" style="width: 100px; height: 100px;"></div>
+    <div id="article-region-3"></div>
+
+Your weird layout is now ready to go !
+
+If you want to use CSS3-Regions (without this polyfill) in a supported browser, you should consider using [Modernizr](http://www.modernizr.com/). A feature detector is present in `feature-detects/cssregions.js`.

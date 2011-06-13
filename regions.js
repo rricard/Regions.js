@@ -23,7 +23,7 @@ window.CSSRegions = (function( window, document, undefined ) {
      */
     
     automation: function() {
-      CSSRegions.autobuild($("#article"), [$("#article-region-1"), $("#article-region-2"), $("#article-region-3")]);
+      
     },
     
     /**
