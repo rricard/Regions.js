@@ -12,14 +12,25 @@ window.CSSRegions = (function( window, document, undefined ) {
   integrate = function (elementsContainer, region) {
     // This avoids the original copy's alteration 
     elementsContainer = elementsContainer.clone();
+    
     // This redefines the offsetParent for children
     if (region.css("position"))
       region.css("position", "relative");
+    
     // This introduces the elements
     region.empty();
     region.append(elementsContainer.children());
+    
+    // Clears the top margin
+    region.children().first().css("margin-top", "0");
+    
     // This removes the overflow and return it
-    return overflowRemover(region);
+    var ret = overflowRemover(region);
+    
+    // Clears the bottom margin
+    region.children().last().css("margin-bottom", "0");
+    
+    return ret;
   },
   
   /**
@@ -53,9 +64,6 @@ window.CSSRegions = (function( window, document, undefined ) {
         }
       }
     });
-    
-    // Fix some display issues (margins)
-    elements.first().css("margin-top", "0");
     
     if (firstRejected) { // The first rejected is taken
       // If it's a text, treat it with Lettering.js
