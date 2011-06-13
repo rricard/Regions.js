@@ -14,7 +14,7 @@ window.CSSRegions = (function( window, document, undefined ) {
     elementsContainer = elementsContainer.clone();
     
     // This redefines the offsetParent for children
-    if (region.css("position"))
+    if (region.css("position") == "static")
       region.css("position", "relative");
     
     // This introduces the elements
@@ -39,7 +39,7 @@ window.CSSRegions = (function( window, document, undefined ) {
    */
     
   overflowRemover = function (elementsContainer, region, letteringForbidden) {
-    if (region == undefined) region = elementsContainer;
+    if (region === undefined) region = elementsContainer;
     
     // This create an empty and hidden DOM node
     var overflowContainer = $("<div></div>"),
@@ -67,7 +67,7 @@ window.CSSRegions = (function( window, document, undefined ) {
     
     if (firstRejected) { // The first rejected is taken
       // If it's a text, treat it with Lettering.js
-      if (firstRejected.children().length == 0 && !letteringForbidden) {
+      if (firstRejected.children().length === 0 && !letteringForbidden) {
         firstRejected.lettering("words");
         letteringForbidden = true;
       }
@@ -104,7 +104,7 @@ window.CSSRegions = (function( window, document, undefined ) {
     } else {
       return overflow;
     }
-  }
+  };
   
   $(function(){
     
