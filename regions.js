@@ -23,7 +23,7 @@ window.CSSRegions = (function( window, document, undefined ) {
      */
     
     automation: function() {
-      CSSRegions.build($("#article"), [$("#article-region-1"), $("#article-region-2"), $("#article-region-3")]);
+      CSSRegions.autobuild($("#article"), [$("#article-region-1"), $("#article-region-2"), $("#article-region-3")]);
     },
     
     /**
@@ -35,11 +35,27 @@ window.CSSRegions = (function( window, document, undefined ) {
     },
     
     /**
+     * Build and rebuild when window sizing changes
+     */
+    
+    autobuild: function (flowContainer, regionsArray) {
+      // First display
+      CSSRegions.build(flowContainer, regionsArray);
+      // When Resize
+      $.each(regionsArray, function (index, region) {
+        $(window).resize(function () {
+          CSSRegions.build(flowContainer, regionsArray);
+        });
+      });
+    },
+    
+    /**
      * Introduce a flow into several regions (once)
      * Returns the overflow in a DOM element
      */
     
     build: function (flowContainer, regionsArray) {
+      regionsArray = regionsArray.slice(0); // Copy of the Array
       flowContainer.css("display", "none");
       var overflow = RegionBuilder.integrate(flowContainer, regionsArray[0]);
       regionsArray.shift();
