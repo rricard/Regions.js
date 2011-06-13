@@ -54,6 +54,9 @@ window.CSSRegions = (function( window, document, undefined ) {
       }
     });
     
+    // Fix some display issues (margins)
+    elements.first().css("margin-top", "0");
+    
     if (firstRejected) { // The first rejected is taken
       // If it's a text, treat it with Lettering.js
       if (firstRejected.children().length == 0 && !letteringForbidden) {
@@ -75,6 +78,7 @@ window.CSSRegions = (function( window, document, undefined ) {
         overflowContainer.prepend(firstRejected);
       }
     }
+    
     return overflowContainer;
   };
   

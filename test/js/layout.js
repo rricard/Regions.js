@@ -14,10 +14,10 @@ $(function(){
   });
   
   test("text in the first region is matching", function() {
-    var expected = /1Lorem ipsum dolor sit amet, consectetur adipisicing elit,\s*/;
+    var expected = /1Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod */;
     ok(
       expected.test($('#article-region-1').text()),
-      "is 1Lorem ipsum dolor sit amet, consectetur adipisicing elit,"
+      "is 1Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod"
     );
   });
 });
