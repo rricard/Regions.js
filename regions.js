@@ -113,7 +113,7 @@ window.CSSRegions = (function( window, document, undefined ) {
       
       // This create an empty and hidden DOM node
       var overflowContainer = $("<div></div>"),
-          elements = elementsContainer.contents(),
+          elements = elementsContainer.children(),
       // This stores the first element that had to be rejected
           firstRejected = false;
       
@@ -144,7 +144,7 @@ window.CSSRegions = (function( window, document, undefined ) {
           letteringForbidden = true;
         }
         // If he is not empty
-        if (firstRejected.contents().length > 0) {
+        if (firstRejected.children().length) {
           // He is reintroduced into the DOM
           elementsContainer.append(firstRejected);
           // The same treatment will be performed on him (recursion)
