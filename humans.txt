@@ -1,0 +1,17 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+  Project manager and creator: Robin Ricard
+  Site: http://rricard.no.de
+  Twitter: @robin_ricard
+  Location: France
+
+/* THANKS */
+  Names (& URL): 
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: Modernizr, jQuery, Lettering.js, Regions.js
+  Software: Github Pages
