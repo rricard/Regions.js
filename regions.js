@@ -7,6 +7,12 @@ window.CSSRegions = (function( window, document, undefined ) {
   var version = "0.1",
   
   /**
+   * How many time must Regions.js before reupdating an autobuilded flow
+   */
+  
+  lazyTime = "100",
+  
+  /**
    * The main object, automation and public manipulation API
    */
   
@@ -41,11 +47,17 @@ window.CSSRegions = (function( window, document, undefined ) {
     autobuild: function (flowContainer, regionsArray) {
       // First display
       CSSRegions.build(flowContainer, regionsArray);
+      // is the lazy counter engaged ?
+      var lazyEngaged = false;
       // When Resize
-      $.each(regionsArray, function (index, region) {
-        $(window).resize(function () {
-          CSSRegions.build(flowContainer, regionsArray);
-        });
+      $(window).resize(function () {
+        if(!lazyEngaged) { // if no event was fired in the few seconds before
+          lazyEngaged = true; // it tells that an event was fired
+          setTimeout(function () { // and it waits before rebuild that things happens
+            CSSRegions.build(flowContainer, regionsArray);
+            lazyEngaged = false;
+          }, lazyTime);
+        }
       });
     },
     
