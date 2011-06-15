@@ -19,28 +19,6 @@ window.CSSRegions = (function( window, document, undefined ) {
   CSSRegions = {
     
     /**
-     * Stores the flows to be analyzed
-     */
-    
-    sets: [],
-    
-    /**
-     * Automated CSS analyse and modifications listening
-     */
-    
-    automation: function() {
-      
-    },
-    
-    /**
-     * CSS Analyse to catch sets
-     */
-    
-    cssAnalyse: function(dom) {
-      
-    },
-    
-    /**
      * Build and rebuild when window sizing changes
      */
     
@@ -174,11 +152,6 @@ window.CSSRegions = (function( window, document, undefined ) {
       return overflowContainer;
     }
   };
-  
-  $(function(){
-    // Let's start the automation
-    CSSRegions.automation();
-  });
   
   return CSSRegions;
 })(this, this.document);
