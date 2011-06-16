@@ -23,28 +23,13 @@ Add that in your page :
 
     <script src="jquery.js"></script>
     <script src="lettering.jquery.js"></script>
-    <script src="regions.js"></script>
+    <script src="regions.jquery.js"></script>
 
 After that, just add :
 
     <script>
     $(function(){ // When DOM is Loaded
-        CSSRegions.autobuild( // use autobuild for fluid layouts
-            $("#article-flow"),
-            [
-                $("#article-region-1"),
-                $("#article-region-2"),
-                $("#article-region-3")
-            ]
-        );
-        CSSRegions.build( // use build for fixed layouts (calculated once)
-            $("#fixed-flow"),
-            [
-                $("#fixed-region-1"),
-                $("#fixed-region-2"),
-                $("#fixed-region-3")
-            ]
-        );
+        $("#article-flow").regions(["#article-region-1", "#article-region-2", "#article-region-3"]);
     });
     </script>
 
@@ -54,8 +39,8 @@ So, somewhere in your HTML, you can put things like that :
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae neque id tellus congue sollicitudin sit amet eget nisi. Morbi gravida vehicula varius. Morbi sapien quam, sollicitudin nec vehicula ut, luctus a magna. Sed id ultricies libero. Etiam sagittis, ligula in luctus aliquet, libero urna sodales purus, at suscipit orci est at libero. Nulla cursus pharetra ligula et ultrices.</p>
         <p>Donec eu odio sed urna consectetur lacinia. Maecenas quam dolor, vestibulum nec condimentum vel, egestas eu lectus. Quisque sit amet quam non eros pulvinar tempus eget in erat. Suspendisse sed sodales justo. Nunc hendrerit cursus tortor, eget accumsan urna sollicitudin sed.</p>
     </div>
-    <div id="article-region-1" style="width: 200px; height: 200px;"></div>
-    <div id="article-region-2" style="width: 100px; height: 100px;"></div>
+    <div id="article-region-1" style="width: 200px; height: 100px;"></div>
+    <div id="article-region-2" style="width: 50%; height: 100px;"></div>
     <div id="article-region-3"></div>
 
 Your weird layout is now ready to go !

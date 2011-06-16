@@ -1,7 +1,7 @@
 #/bin/bash
 
-IN=regions.js
-OUT=regions.min.js
+IN=regions.jquery.js
+OUT=regions.jquery.min.js
 
 SIZE_MIN=$(uglifyjs "$IN" --extra --unsafe | tee "$OUT" | wc -c)
 SIZE_GZIP=$(gzip -nfc --best "$OUT" | wc -c)

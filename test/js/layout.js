@@ -1,7 +1,7 @@
 $(function(){
   module("Layout");
   
-  CSSRegions.autobuild($("#article"), [$("#article-region-1"), $("#article-region-2"), $("#article-region-3")]);
+  $("#article").regions(["#article-region-1", "#article-region-2", "#article-region-3"]);
 
   test("hide flow source", function() {
     equal($('#article').css("display"), "none");
