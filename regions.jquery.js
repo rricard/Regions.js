@@ -65,8 +65,9 @@
     elementsContainer = elementsContainer.clone();
     
     // This redefines the offsetParent for children
-    if (region.css("position") == "static")
+    if (region.css("position") === "static") {
       region.css("position", "relative");
+    }
     
     // This introduces the elements
     region.empty();
@@ -90,7 +91,9 @@
    */
     
   overflowRemover = function (elementsContainer, region, letteringForbidden) {
-    if (region === undefined) region = elementsContainer;
+    if (region === undefined) {
+      region = elementsContainer;
+    }
     
     // This create an empty and hidden DOM node
     var overflowContainer = $("<div></div>"),
@@ -117,7 +120,7 @@
       // If some children are text nodes, treat it with Lettering.js
       if (!letteringForbidden) {
         firstRejected.contents().filter(function() {
-          return this.nodeType == 3; // Select text nodes
+          return this.nodeType === 3; // Select text nodes
         })
           .wrap("<span></span")
           .parent()
@@ -155,7 +158,7 @@
     settings = $.extend(defaults, settings);
     // Ensure that we're passing DOM elements not just strings !
     regions = $.map(regions, function (region) {
-      if(typeof region == "string") {
+      if(typeof region === "string") {
         return $(region);
       } else {
         return region;
