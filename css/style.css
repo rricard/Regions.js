@@ -99,7 +99,11 @@ header, footer { text-align: center; }
 #layout > .line1 > .col2, #layout > .line1 > .col3 { content: from(page-flow); }
 #layout > .line2 { height: auto; content: from(page-flow); }
 
-
+/* lte ie7 inline-block fix */
+.lteie7 #layout > .line1 > * {  
+  zoom: 1;
+  display: inline; 
+}
 
 // UTILS
 .ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
