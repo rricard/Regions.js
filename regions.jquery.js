@@ -170,6 +170,9 @@
     } else {
       buildRegions($(this), regions, settings);
     }
+
+    // maintain chainability
+    return this;
   };
   
 })(jQuery, window, document);
