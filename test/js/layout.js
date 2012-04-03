@@ -29,10 +29,10 @@ $(function(){
   $("#alternative-article").regions('.alternative-region');
 
   test("alternative method with jquery selector", function(){
-    var expected = /Lorem ipsum dolor sit amet, consectetur adipisicing elit. */;
+    var expected = /Lorem ipsum dolor sit amet, consectetur adipiscing elit. */;
     ok(
-      expected.test($('.alternative-region:first').text(),
-      'is Lorem ipsum dolor sit amet, consectetur adipisicing elit. …')
+      expected.test($('.alternative-region:first').text()),
+      'is Lorem ipsum dolor sit amet, consectetur adipisicing elit. …'
     )
   });
 });
