@@ -54,6 +54,24 @@
       margin-top: 20px;
       width: 100%;
     }
+
+    #alternative-article {
+      -webkit-flow: 'foo';
+      -webkit-flow-into: foo;
+    }
+
+    .alternative-region {
+      content: from(foo);
+      content: -webkit-from-flow("foo");
+      -webkit-flow-from: foo;
+      -webkit-region-overflow: auto;
+
+      background: #C5DFF0;
+      float: left;
+      width: 30%;
+      height: 200px;
+      margin: 10px;
+    }
     </style>
     <h1>A press article</h1>
     <div id="article">
@@ -65,4 +83,40 @@
     <div class="article-region" id="article-region-2"></div>
     <div class="article-region" id="article-region-3"></div>
   </div>
+  <h1>Alternative Query Method</h1>
+
+  <div id="alternative-article">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed leo enim, interdum vel iaculis vitae, pellentesque
+      sit amet neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+      Aliquam eget velit eu sapien commodo cursus non et orci. Maecenas ut tellus vel risus fermentum convallis in ut
+      erat. Maecenas luctus est et dolor posuere non posuere justo congue. Vestibulum a nulla nulla, at porttitor massa.
+      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut vehicula consequat
+      risus, sit amet dapibus nunc volutpat quis. Donec vel ante vitae velit auctor sodales non eget augue. Nam at justo
+      metus. Sed consectetur dui vitae erat aliquet tincidunt. Quisque suscipit, mauris porttitor pharetra cursus, ipsum
+      nisl tempor velit, in porta orci risus ac dui. Nam non urna nunc, vel ultrices eros. Suspendisse egestas venenatis
+      erat et imperdiet.
+    </p>
+
+    <p>
+      Aenean varius euismod libero, et hendrerit arcu suscipit ut. Curabitur odio leo, tristique a varius at, venenatis
+      vel arcu. Cras quis adipiscing leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras placerat ante id
+      felis molestie varius scelerisque elit luctus. Mauris sit amet mauris elementum magna mollis hendrerit ac vitae
+      ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam
+      vehicula aliquet erat ac euismod.
+    </p>
+
+    <p>
+      Cras non diam sit amet justo elementum convallis sed non elit. Fusce tempor est et ligula sodales pretium.
+      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas laoreet sem eu
+      libero aliquet auctor. Praesent justo augue, luctus sed placerat vel, faucibus at mauris. Mauris fringilla, eros
+      nec elementum tempor, ligula ante blandit urna, ut ultrices diam massa a nisi. Suspendisse at libero lorem. Morbi
+      ac enim eget urna venenatis iaculis.
+    </p>
+  </div>
+  <div class="alternative-region"></div>
+  <div class="alternative-region"></div>
+  <div class="alternative-region"></div>
+  <div class="alternative-region"></div>
 </body>
+</html>
