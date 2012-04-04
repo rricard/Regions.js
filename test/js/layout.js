@@ -22,4 +22,17 @@ $(function(){
       "is 1Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod"
     );
   });
+
+
+
+  // alternative method: use only a target jquery selector:
+  $("#alternative-article").regions('.alternative-region');
+
+  test("alternative method with jquery selector", function(){
+    var expected = /Lorem ipsum dolor sit amet, consectetur adipiscing elit. */;
+    ok(
+      expected.test($('.alternative-region:first').text()),
+      'is Lorem ipsum dolor sit amet, consectetur adipisicing elit. …'
+    )
+  });
 });

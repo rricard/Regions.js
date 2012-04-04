@@ -21,9 +21,9 @@
    * Build and rebuild when window sizing changes
   */
     
-  autoBuildRegions = function (flowContainer, regionsArray, settings) {
+  autoBuildRegions = function (flowContainer, regions, settings) {
     // First display
-    buildRegions(flowContainer, regionsArray, settings);
+    buildRegions(flowContainer, regions, settings);
     // is the lazy timeout engaged ?
     var lazyEngaged = false;
     // When Resize
@@ -31,7 +31,7 @@
       if(!lazyEngaged) { // if no event was fired in the few seconds before
         lazyEngaged = true; // it tells that an event was fired
         setTimeout(function () { // and it waits before rebuild that things happens
-          buildRegions(flowContainer, regionsArray, settings);
+          buildRegions(flowContainer, regions, settings);
           lazyEngaged = false;
         }, settings.lazyTime);
       }
@@ -43,13 +43,13 @@
    * Returns the overflow in a DOM element
    */
   
-  buildRegions = function (flowContainer, regionsArray, settings) {
-    regionsArray = regionsArray.slice(0); // Copy of the Array
+  buildRegions = function (flowContainer, regions, settings) {
+    regions = regions.slice(0); // Copy of the Array
     flowContainer.css("display", "none");
-    var overflow = integrate(flowContainer, regionsArray[0]);
-    regionsArray.shift();
-    if (regionsArray.length > 0) {
-      return buildRegions(overflow, regionsArray);
+    var overflow = integrate(flowContainer, regions[0]);
+    regions.shift();
+    if (regions.length > 0) {
+      return buildRegions(overflow, regions);
     } else {
       return overflow;
     }
@@ -156,20 +156,36 @@
   $.fn.regions = function (regions, settings) {
     // Merge settings with defaults
     settings = $.extend(defaults, settings);
-    // Ensure that we're passing DOM elements not just strings !
-    regions = $.map(regions, function (region) {
-      if(typeof region === "string") {
-        return $(region);
-      } else {
-        return region;
+
+    // add possibility to define target regions via jquery object or query string
+    if (typeof regions === "string" || regions instanceof jQuery) {
+      if (!(regions instanceof jQuery)) {
+        regions = $(regions);
       }
-    });
+      regionsArray = $.makeArray(regions);
+      regions = $.map(regionsArray, function(region) {
+          return $(region);
+      });
+    } else {
+      // Ensure that we're passing DOM elements not just strings !
+      regions = $.map(regions, function (region) {
+        if(typeof region === "string") {
+          return $(region);
+        } else {
+          return region;
+        }
+      });
+    }
+
     // Then call the right function
     if(settings.resizing) {
       autoBuildRegions($(this), regions, settings);
     } else {
       buildRegions($(this), regions, settings);
     }
+
+    // maintain chainability
+    return this;
   };
   
 })(jQuery, window, document);
