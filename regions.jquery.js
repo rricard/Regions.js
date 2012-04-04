@@ -158,9 +158,11 @@
     settings = $.extend(defaults, settings);
 
     // add possibility to define target regions via jquery object or query string
-    if (typeof regions === "string") {
-      $regions = $(regions);
-      regionsArray = $.makeArray($regions);
+    if (typeof regions === "string" || regions instanceof jQuery) {
+      if (!(regions instanceof jQuery)) {
+        regions = $(regions);
+      }
+      regionsArray = $.makeArray(regions);
       regions = $.map(regionsArray, function(region) {
           return $(region);
       });
