@@ -24,7 +24,6 @@ $(function(){
   });
 
 
-
   // alternative method: use only a target jquery selector:
   $("#alternative-article").regions('.alternative-region');
 
@@ -34,5 +33,11 @@ $(function(){
       expected.test($('.alternative-region:first').text()),
       'is Lorem ipsum dolor sit amet, consectetur adipisicing elit. …'
     )
+  });
+
+
+  // handling oversized elements
+  test("oversized object visible", function(){
+    equal($('.alternative-region img#oversized').length, 1);
   });
 });
