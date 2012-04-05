@@ -12,9 +12,10 @@
    * Defines the standard settings
   */
   
-  var defaults = {
+  var settings = defaults = {
     resizing: true,
-    lazyTime: 150
+    lazyTime: 150,
+    resizeOversizedElements : true // set to false, if you handle the overflow of oversized elems by yourself
   },
   
   /**
@@ -142,14 +143,26 @@
         overflowContainer.prepend(firstRejected);
       }
     }
-    
+
+    // if the first element is immediately rejected, its probably too big for the region
+    // so append it anyways. by default, the max-width and max-height are set to the regions dimension.
+    if (firstRejected && elementsContainer.children().length === 0) {
+      if (settings.resizeOversizedElements) {
+        firstRejected.css({
+          'max-width' : region.innerWidth(),
+          'max-height' : region.innerHeight()
+        });
+      };
+      elementsContainer.append(firstRejected);
+    }
+
     return overflowContainer;
   };
   
   /**
    * The JS API is a jQuery plugin
    * Target your flow node with jQuery
-   * The first parameter is an array of the regions you want to target
+   * The first parameter is an array or jQuery Object/String of the regions you want to target
    * The second parameter are the options
    */
    
