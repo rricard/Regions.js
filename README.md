@@ -66,4 +66,4 @@ You can also pass a jQuery Object or a list of jQuery Objects / jQuery Selectors
 
 
 If you want to use CSS3-Regions (without this polyfill) in a supported browser, you should consider using [Modernizr](http://www.modernizr.com/). A feature detector is present in `feature-detects/cssregions.js`.
-**Note that there is currently (4th of avril 2012) no browser supporting css-regions, even Chrome [has dropped the support](https://bugs.webkit.org/show_bug.cgi?id=78525#c0)**
+**Note that there is currently (4th of april 2012) no browser supporting css-regions, even Chrome [has dropped the support](https://bugs.webkit.org/show_bug.cgi?id=78525#c0)**
